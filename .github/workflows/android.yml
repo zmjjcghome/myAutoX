@@ -35,7 +35,8 @@ jobs:
         cp *keystore* inrt/
         sed -i 's#File propFile =new File.*#File propFile =rootProject.file("keystore.properties")#g' ./inrt/build.gradle
         sed -i 's#File propFile =new File.*#File propFile =rootProject.file("keystore.properties")#g' ./app/build.gradle
-        chmod 777 ./gradlew && ./gradlew :inrt:assemble &&  ./gradlew inrt:cp2APP && ./gradlew :app:assembleRelease
+        #chmod 777 ./gradlew && ./gradlew :inrt:assemble &&  ./gradlew inrt:cp2APP && ./gradlew :app:assembleRelease
+        chmod 777 ./gradlew && ./gradlew :app:assembleRelease
         tar -czf $FILETARNAME app/build/outputs
         
     - name: Upload firmware to cowtransfer
