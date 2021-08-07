@@ -31,6 +31,8 @@ jobs:
     - name: Build with Gradle
       run: |
         #sed -i 's#maven.*http://120.25.164.*##g' ./build.gradle
+        cp *keystore* app/
+        cp *keystore* inrt/
         sed -i 's#File propFile =new File.*#File propFile =rootProject.file("keystore.properties")#g' ./inrt/build.gradle
         sed -i 's#File propFile =new File.*#File propFile =rootProject.file("keystore.properties")#g' ./app/build.gradle
         chmod 777 ./gradlew && ./gradlew :inrt:assemble &&  ./gradlew inrt:cp2APP && ./gradlew :app:assembleRelease
